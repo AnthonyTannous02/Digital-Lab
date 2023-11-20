@@ -1,0 +1,225 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/user/Desktop/Digital Lab Tue/WatchdogTimer
+vLCD
+Z0 !s110 1700484360
+!i10b 1
+!s100 @A:da`CH;3>_LlJ0jeL>21
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IJYBmeW_JoSb07kS]QPf[d2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/user/Desktop/Digital Project/Part1/Sim
+Z4 w1699632230
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/LCD.v
+!i122 138
+L0 1 139
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1700484360.000000
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD.v|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+n@l@c@d
+vLCD_CDivider
+R0
+!i10b 1
+!s100 iPR6j<z>F^>fTbn8;llZ91
+R1
+I;f4Qcj?LVE:OHBW^<<a:E2
+R2
+R3
+w1699800687
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_CDivider.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_CDivider.v
+!i122 139
+Z9 L0 1 25
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_CDivider.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_CDivider.v|
+!i113 1
+R7
+R8
+n@l@c@d_@c@divider
+vLCD_Controller
+R0
+!i10b 1
+!s100 Y0<bX>eK^ihJP3fT9DoXn0
+R1
+IPd=^]8XY[6dYM@gGG5Sah1
+R2
+R3
+R4
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_Controller.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_Controller.v
+!i122 140
+L0 1 82
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/LCD_Controller.v|
+!i113 1
+R7
+R8
+n@l@c@d_@controller
+vMAIN_LCD
+R0
+!i10b 1
+!s100 _gTh]mTKD]1I1k1zTceNd0
+R1
+IHo@8LTUoBODELCig^]dJ=3
+R2
+R3
+w1699797454
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/MAIN_LCD.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/MAIN_LCD.v
+!i122 141
+L0 1 53
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/MAIN_LCD.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/MAIN_LCD.v|
+!i113 1
+R7
+R8
+n@m@a@i@n_@l@c@d
+vParking_Controller
+!s110 1700473907
+!i10b 1
+!s100 6<cFc]Q8AQj>I:7C9NMJc3
+R1
+IoNn[7:EP`=1BZ2cSHNBJ^3
+R2
+R3
+w1700422872
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v
+!i122 125
+L0 1 178
+R5
+r1
+!s85 0
+31
+!s108 1700473907.000000
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v|
+!i113 1
+R7
+R8
+n@parking_@controller
+vParking_Controller_tb
+Z10 !s110 1700484361
+!i10b 1
+!s100 VEbo<LXgT41HYC:A61g[n1
+R1
+ITQG]LPAeV@hhLfUk2id^Q2
+R2
+R3
+w1700422800
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v
+!i122 145
+L0 1 108
+R5
+r1
+!s85 0
+31
+Z11 !s108 1700484361.000000
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v|
+!i113 1
+R7
+R8
+n@parking_@controller_tb
+vps2_clock_divider
+R10
+!i10b 1
+!s100 =Jmz5^iTZ76TYKFmjVCKQ2
+R1
+I655N<E>UU1I9K;VDMo9Jl1
+R2
+R3
+w1699795361
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v
+!i122 142
+R9
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v|
+!i113 1
+R7
+R8
+vps2_keyboard
+R10
+!i10b 1
+!s100 d<8O8ne:>k]BLn9XVoehh2
+R1
+ISk0g0Jm`Q;6;JDIPgj6Ik2
+R2
+R3
+w1700218785
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_keyboard.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_keyboard.v
+!i122 143
+L0 1 192
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_keyboard.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_keyboard.v|
+!i113 1
+R7
+R8
+vps2_Main
+R10
+!i10b 1
+!s100 3h6KKXY3c4bQRgLhOM1`O2
+R1
+ILAAKiXaOPKl@6jLTJAXFi0
+R2
+R3
+w1700423831
+8C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v
+FC:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v
+!i122 144
+L0 1 105
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v|
+!i113 1
+R7
+R8
+nps2_@main

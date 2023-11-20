@@ -1,0 +1,80 @@
+# Compile of LCD.v was successful.
+# Compile of LCD_CDivider.v was successful.
+# Compile of LCD_Controller.v was successful.
+# Compile of MAIN_LCD.v was successful.
+# Compile of Parking_Controller.v was successful.
+# Compile of ps2_clock_divider.v was successful.
+# Compile of ps2_keyboard.v was successful.
+# Compile of ps2_Main.v was successful.
+# Compile of TESTBENCH.v was successful.
+# 9 compiles, 0 failed with no errors.
+vsim -gui work.Parking_Controller_tb
+# vsim -gui work.Parking_Controller_tb 
+# Start time: 11:52:01 on Nov 20,2023
+# Loading work.Parking_Controller_tb
+# Loading work.Parking_Controller
+# Loading work.ps2_Main
+# Loading work.ps2_clock_divider
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'keyb'.  Expected 13, found 12.
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'PS2_CLK'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'PS2_DAT'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3722) C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v(38): [TFMPC] - Missing connection for port 'ctrl_pressed'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'reset'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb/inst2 File: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v Line: 29
+add wave -position insertpoint  \
+sim:/Parking_Controller_tb/clk \
+sim:/Parking_Controller_tb/first_rem_BCD \
+sim:/Parking_Controller_tb/flr \
+sim:/Parking_Controller_tb/green_led \
+sim:/Parking_Controller_tb/key1_code \
+sim:/Parking_Controller_tb/key1_on \
+sim:/Parking_Controller_tb/power \
+sim:/Parking_Controller_tb/red_power_led \
+sim:/Parking_Controller_tb/red_wrong_led \
+sim:/Parking_Controller_tb/second_rem_BCD \
+sim:/Parking_Controller_tb/tot_rem_BCD_left \
+sim:/Parking_Controller_tb/tot_rem_BCD_right
+run -all
+# ** Note: $stop    : C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v(99)
+#    Time: 1450 ps  Iteration: 0  Instance: /Parking_Controller_tb
+# Break in Module Parking_Controller_tb at C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v line 99
+add wave -position insertpoint  \
+sim:/Parking_Controller_tb/uut/ID
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'keyb'.  Expected 13, found 12.
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'PS2_CLK'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'PS2_DAT'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb File: C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v Line: 38
+# ** Warning: (vsim-3722) C:/Users/user/Desktop/Digital Project/Part1/Sim/Parking_Controller.v(38): [TFMPC] - Missing connection for port 'ctrl_pressed'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'reset'. The port definition is at: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_clock_divider.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /Parking_Controller_tb/uut/keyb/inst2 File: C:/Users/user/Desktop/Digital Project/Part1/Sim/ps2_Main.v Line: 29
+run -all
+# ** Note: $stop    : C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v(99)
+#    Time: 1450 ps  Iteration: 0  Instance: /Parking_Controller_tb
+# Break in Module Parking_Controller_tb at C:/Users/user/Desktop/Digital Project/Part1/Sim/TESTBENCH.v line 99
+# Compile of LCD.v was successful.
+# Compile of LCD_CDivider.v was successful.
+# Compile of LCD_Controller.v was successful.
+# Compile of MAIN_LCD.v was successful.
+# Compile of Parking_Controller.v failed with 1 errors.
+# Compile of ps2_clock_divider.v was successful.
+# Compile of ps2_keyboard.v was successful.
+# Compile of ps2_Main.v was successful.
+# Compile of TESTBENCH.v was successful.
+# 9 compiles, 1 failed with 1 error.
+# Compile of LCD.v was successful.
+# Compile of LCD_CDivider.v was successful.
+# Compile of LCD_Controller.v was successful.
+# Compile of MAIN_LCD.v was successful.
+# Compile of Parking_Controller.v failed with 2 errors.
+# Compile of ps2_clock_divider.v was successful.
+# Compile of ps2_keyboard.v was successful.
+# Compile of ps2_Main.v was successful.
+# Compile of TESTBENCH.v was successful.
+# 9 compiles, 1 failed with 2 errors.
