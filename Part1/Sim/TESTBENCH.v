@@ -60,13 +60,18 @@ module Parking_Controller_tb;
         key1_on = 0;
 
         #60
-        key1_code = 8'h26; key1_on = 1;
+        key1_code = 8'h1E; key1_on = 1;
         #20
         key1_on = 0;
 
         
         #10
-        key1_code = 8'h26; key1_on = 1;
+        key1_code = 8'h45; key1_on = 1;
+        #20
+        key1_on = 0;
+
+        #10
+        key1_code = 8'h1E; key1_on = 1;
         #20
         key1_on = 0;
 
@@ -81,17 +86,12 @@ module Parking_Controller_tb;
         key1_on = 0;
 
         #10
-        key1_code = 8'h26; key1_on = 1;
+        key1_code = 8'h16; key1_on = 1;
         #20
         key1_on = 0;
 
         #10
-        key1_code = 8'h26; key1_on = 1;
-        #20
-        key1_on = 0;
-
-        #10
-        key1_code = 8'h26; key1_on = 1;
+        key1_code = 8'h45; key1_on = 1;
         #20
         key1_on = 0;
 

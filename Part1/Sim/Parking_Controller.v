@@ -20,9 +20,15 @@ reg [5:0] t;
 wire key_pressed;
 wire [3:0] key;
 reg [1:0] flg_inp = 0;
-wire id_valid;
+reg id_valid;
 
 reg [2:0] floor_zero, floor_one;
+
+reg [95:0] outside_users = {8'h10, 8'h11, 8'h12, 8'h13, 8'h14, 8'h15, 8'h16, 8'h17, 8'h18, 8'h19, 8'h20, 8'h21};
+reg [15:0] outside_special_users = {8'h00, 8'h01};
+reg [15:0] admin_users = {8'h05, 8'h06};
+
+parameter ID_PREFIX = 20'h20230;
 
 parameter OFF = 0;
 parameter INITIAL = 1;
@@ -38,9 +44,6 @@ parameter GRANTED_ALT_FLR_N = 3;
 parameter GRANTED_CHOSN_FLR_N = 4;
 parameter NO_SPACE_N = 5;
 
-
-assign id_valid = 1;
-
 initial begin
     state = 0;
     reset = 0;
@@ -52,6 +55,7 @@ initial begin
     alternative_flr_full = 0; 
     id_special = 0; 
     special_flr_chosen = 0;
+    id_valid = 0;
 end
 
 ps2_Main keyb(
@@ -141,6 +145,13 @@ always @ (posedge clk) begin
                 state <= OFF;
             end else begin
 
+id_valid = ((ID == {ID_PREFIX, outside_special_users[7:4]}) || (ID == {ID_PREFIX, outside_special_users[3:0]}) ||
+(ID == {ID_PREFIX, outside_users[95:88]}) || (ID == {ID_PREFIX, outside_users[87:80]}) || (ID == {ID_PREFIX, outside_users[79:72]}) ||
+(ID == {ID_PREFIX, outside_users[71:64]}) || (ID == {ID_PREFIX, outside_users[63:56]}) || (ID == {ID_PREFIX, outside_users[55:48]}) ||
+(ID == {ID_PREFIX, outside_users[47:40]}) || (ID == {ID_PREFIX, outside_users[39:32]}) || (ID == {ID_PREFIX, outside_users[31:24]}) ||
+(ID == {ID_PREFIX, outside_users[23:16]}) || (ID == {ID_PREFIX, outside_users[15:8]})  || (ID == {ID_PREFIX, outside_users[7:0]})) ? 1 : 0;
+
+id_special = ((ID == {ID_PREFIX, outside_special_users[7:4]}) || (ID == {ID_PREFIX, outside_special_users[3:0]})) ? 1 : 0;
 
 state <= NORMAL_FSM;
 if (flr == 0) begin
