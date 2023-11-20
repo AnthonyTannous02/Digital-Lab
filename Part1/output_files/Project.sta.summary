@@ -1,0 +1,353 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -7.340
+TNS   : -826.553
+
+Type  : Slow 1200mV 85C Model Setup 'state.INPUTTING'
+Slack : -3.959
+TNS   : -3.959
+
+Type  : Slow 1200mV 85C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -3.233
+TNS   : -58.442
+
+Type  : Slow 1200mV 85C Model Setup 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -2.094
+TNS   : -19.134
+
+Type  : Slow 1200mV 85C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.500
+TNS   : -22.676
+
+Type  : Slow 1200mV 85C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -1.282
+TNS   : -1.282
+
+Type  : Slow 1200mV 85C Model Setup 'PS2_CLK'
+Slack : -0.395
+TNS   : -0.395
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.386
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : 0.431
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'PS2_CLK'
+Slack : 0.574
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : 0.649
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'state.INPUTTING'
+Slack : 3.383
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -2.047
+TNS   : -16.376
+
+Type  : Slow 1200mV 85C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.790
+TNS   : -28.669
+
+Type  : Slow 1200mV 85C Model Recovery 'PS2_CLK'
+Slack : -1.506
+TNS   : -1.506
+
+Type  : Slow 1200mV 85C Model Recovery 'clk'
+Slack : -1.225
+TNS   : -74.937
+
+Type  : Slow 1200mV 85C Model Removal 'clk'
+Slack : 0.587
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.721
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'PS2_CLK'
+Slack : 1.314
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 1.734
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -428.335
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'PS2_CLK'
+Slack : -3.000
+TNS   : -4.285
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.285
+TNS   : -33.410
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.285
+TNS   : -20.560
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -1.285
+TNS   : -14.135
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'state.INPUTTING'
+Slack : 0.420
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -6.587
+TNS   : -719.068
+
+Type  : Slow 1200mV 0C Model Setup 'state.INPUTTING'
+Slack : -3.496
+TNS   : -3.496
+
+Type  : Slow 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -2.884
+TNS   : -51.434
+
+Type  : Slow 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -1.841
+TNS   : -16.461
+
+Type  : Slow 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.260
+TNS   : -19.062
+
+Type  : Slow 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -1.088
+TNS   : -1.088
+
+Type  : Slow 1200mV 0C Model Setup 'PS2_CLK'
+Slack : -0.306
+TNS   : -0.306
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.288
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.337
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 0.388
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : 0.396
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'PS2_CLK'
+Slack : 0.542
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : 0.593
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'state.INPUTTING'
+Slack : 3.082
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.774
+TNS   : -14.192
+
+Type  : Slow 1200mV 0C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.526
+TNS   : -24.205
+
+Type  : Slow 1200mV 0C Model Recovery 'PS2_CLK'
+Slack : -1.306
+TNS   : -1.306
+
+Type  : Slow 1200mV 0C Model Recovery 'clk'
+Slack : -1.019
+TNS   : -58.576
+
+Type  : Slow 1200mV 0C Model Removal 'clk'
+Slack : 0.525
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.611
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'PS2_CLK'
+Slack : 1.189
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 1.558
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -428.335
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'PS2_CLK'
+Slack : -3.000
+TNS   : -4.285
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.285
+TNS   : -33.410
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.285
+TNS   : -20.560
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -1.285
+TNS   : -14.135
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'state.INPUTTING'
+Slack : 0.429
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -3.286
+TNS   : -262.735
+
+Type  : Fast 1200mV 0C Model Setup 'state.INPUTTING'
+Slack : -1.496
+TNS   : -1.496
+
+Type  : Fast 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.049
+TNS   : -17.550
+
+Type  : Fast 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -0.896
+TNS   : -0.896
+
+Type  : Fast 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -0.451
+TNS   : -3.341
+
+Type  : Fast 1200mV 0C Model Setup 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -0.264
+TNS   : -2.671
+
+Type  : Fast 1200mV 0C Model Setup 'PS2_CLK'
+Slack : 0.485
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'PS2_CLK'
+Slack : 0.017
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.047
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.173
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : 0.189
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 0.193
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : 0.296
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'state.INPUTTING'
+Slack : 1.686
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -0.538
+TNS   : -4.304
+
+Type  : Fast 1200mV 0C Model Recovery 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -0.385
+TNS   : -5.207
+
+Type  : Fast 1200mV 0C Model Recovery 'clk'
+Slack : -0.151
+TNS   : -1.996
+
+Type  : Fast 1200mV 0C Model Recovery 'PS2_CLK'
+Slack : -0.042
+TNS   : -0.042
+
+Type  : Fast 1200mV 0C Model Removal 'clk'
+Slack : 0.294
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : 0.335
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'PS2_CLK'
+Slack : 0.390
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : 0.859
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -429.681
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'PS2_CLK'
+Slack : -3.000
+TNS   : -4.789
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|keyready'
+Slack : -1.000
+TNS   : -26.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|ps2_clk_in'
+Slack : -1.000
+TNS   : -16.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_clock_divider:inst2|clock_out'
+Slack : -1.000
+TNS   : -11.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ps2_Main:keyb|ps2_keyboard:inst1|clk_div[8]'
+Slack : -1.000
+TNS   : -4.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'state.INPUTTING'
+Slack : 0.459
+TNS   : 0.000
+
+------------------------------------------------------------

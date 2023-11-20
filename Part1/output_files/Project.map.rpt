@@ -1,0 +1,807 @@
+Analysis & Synthesis report for Project
+Sun Nov 19 21:25:55 2023
+Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |Parking_Controller|flg_inp
+  9. State Machine - |Parking_Controller|state
+ 10. State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST
+ 11. State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|ST
+ 12. User-Specified and Inferred Latches
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Parameter Settings for User Entity Instance: Top-level Entity: |Parking_Controller
+ 19. Parameter Settings for User Entity Instance: MAIN_LCD:lcd_inst|LCD:inst2
+ 20. Parameter Settings for User Entity Instance: MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0
+ 21. Port Connectivity Checks: "MAIN_LCD:lcd_inst|LCD_CDivider:inst1"
+ 22. Port Connectivity Checks: "ps2_Main:keyb|ps2_keyboard:inst1"
+ 23. Port Connectivity Checks: "ps2_Main:keyb|ps2_clock_divider:inst2"
+ 24. Port Connectivity Checks: "ps2_Main:keyb"
+ 25. Post-Synthesis Netlist Statistics for Top Partition
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
+ 28. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++---------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                    ;
++------------------------------------+--------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Nov 19 21:25:55 2023      ;
+; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
+; Revision Name                      ; Project                                    ;
+; Top-level Entity Name              ; Parking_Controller                         ;
+; Family                             ; Cyclone IV E                               ;
+; Total logic elements               ; 740                                        ;
+;     Total combinational functions  ; 679                                        ;
+;     Dedicated logic registers      ; 389                                        ;
+; Total registers                    ; 389                                        ;
+; Total pins                         ; 78                                         ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Total PLLs                         ; 0                                          ;
++------------------------------------+--------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; Parking_Controller ; Project            ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                   ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                     ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------+---------+
+; BCD_7SEG.v                       ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/BCD_7SEG.v           ;         ;
+; ps2_Main.v                       ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/ps2_Main.v           ;         ;
+; ps2_keyboard.v                   ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/ps2_keyboard.v       ;         ;
+; ps2_clock_divider.v              ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/ps2_clock_divider.v  ;         ;
+; Parking_Controller.v             ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/Parking_Controller.v ;         ;
+; MAIN_LCD.v                       ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/MAIN_LCD.v           ;         ;
+; LCD_Controller.v                 ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/LCD_Controller.v     ;         ;
+; LCD_CDivider.v                   ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/LCD_CDivider.v       ;         ;
+; LCD.v                            ; yes             ; User Verilog HDL File  ; C:/Users/user/Desktop/Digital Project/Part1/LCD.v                ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 740       ;
+;                                             ;           ;
+; Total combinational functions               ; 679       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 337       ;
+;     -- 3 input functions                    ; 84        ;
+;     -- <=2 input functions                  ; 258       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 522       ;
+;     -- arithmetic mode                      ; 157       ;
+;                                             ;           ;
+; Total registers                             ; 389       ;
+;     -- Dedicated logic registers            ; 389       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 78        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 331       ;
+; Total fan-out                               ; 3314      ;
+; Average fan-out                             ; 2.65      ;
++---------------------------------------------+-----------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                            ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                               ; Library Name ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------+--------------+
+; |Parking_Controller             ; 679 (86)          ; 389 (46)     ; 0           ; 0            ; 0       ; 0         ; 78   ; 0            ; |Parking_Controller                                               ; work         ;
+;    |BDC_7SEG:bcd_inst|          ; 63 (63)           ; 49 (49)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|BDC_7SEG:bcd_inst                             ; work         ;
+;    |MAIN_LCD:lcd_inst|          ; 335 (89)          ; 162 (84)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|MAIN_LCD:lcd_inst                             ; work         ;
+;       |LCD:inst2|               ; 193 (172)         ; 51 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2                   ; work         ;
+;          |LCD_Controller:u0|    ; 21 (21)           ; 13 (13)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0 ; work         ;
+;       |LCD_CDivider:inst1|      ; 53 (53)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|MAIN_LCD:lcd_inst|LCD_CDivider:inst1          ; work         ;
+;    |ps2_Main:keyb|              ; 195 (57)          ; 132 (39)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|ps2_Main:keyb                                 ; work         ;
+;       |ps2_clock_divider:inst2| ; 46 (46)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|ps2_Main:keyb|ps2_clock_divider:inst2         ; work         ;
+;       |ps2_keyboard:inst1|      ; 92 (92)           ; 60 (60)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Parking_Controller|ps2_Main:keyb|ps2_keyboard:inst1              ; work         ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------+
+; State Machine - |Parking_Controller|flg_inp       ;
++------------+------------+------------+------------+
+; Name       ; flg_inp.00 ; flg_inp.10 ; flg_inp.01 ;
++------------+------------+------------+------------+
+; flg_inp.00 ; 0          ; 0          ; 0          ;
+; flg_inp.01 ; 1          ; 0          ; 1          ;
+; flg_inp.10 ; 1          ; 1          ; 0          ;
++------------+------------+------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |Parking_Controller|state                                                                               ;
++------------------+-----------------+----------------+-----------------+------------------+---------------+--------------+
+; Name             ; state.INPUTTING ; state.EXIT_FSM ; state.ADMIN_FSM ; state.NORMAL_FSM ; state.INITIAL ; state.000000 ;
++------------------+-----------------+----------------+-----------------+------------------+---------------+--------------+
+; state.000000     ; 0               ; 0              ; 0               ; 0                ; 0             ; 0            ;
+; state.INITIAL    ; 0               ; 0              ; 0               ; 0                ; 1             ; 1            ;
+; state.NORMAL_FSM ; 0               ; 0              ; 0               ; 1                ; 0             ; 1            ;
+; state.ADMIN_FSM  ; 0               ; 0              ; 1               ; 0                ; 0             ; 1            ;
+; state.EXIT_FSM   ; 0               ; 1              ; 0               ; 0                ; 0             ; 1            ;
+; state.INPUTTING  ; 1               ; 0              ; 0               ; 0                ; 0             ; 1            ;
++------------------+-----------------+----------------+-----------------+------------------+---------------+--------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST            ;
++----------------+----------------+----------------+----------------+----------------+
+; Name           ; mLCD_ST.000011 ; mLCD_ST.000010 ; mLCD_ST.000001 ; mLCD_ST.000000 ;
++----------------+----------------+----------------+----------------+----------------+
+; mLCD_ST.000000 ; 0              ; 0              ; 0              ; 0              ;
+; mLCD_ST.000001 ; 0              ; 0              ; 1              ; 1              ;
+; mLCD_ST.000010 ; 0              ; 1              ; 0              ; 1              ;
+; mLCD_ST.000011 ; 1              ; 0              ; 0              ; 1              ;
++----------------+----------------+----------------+----------------+----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------+
+; State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|ST ;
++-------+-------+-------+-------+------------------------------------------------------+
+; Name  ; ST.11 ; ST.10 ; ST.01 ; ST.00                                                ;
++-------+-------+-------+-------+------------------------------------------------------+
+; ST.00 ; 0     ; 0     ; 0     ; 0                                                    ;
+; ST.01 ; 0     ; 0     ; 1     ; 1                                                    ;
+; ST.10 ; 0     ; 1     ; 0     ; 1                                                    ;
+; ST.11 ; 1     ; 0     ; 0     ; 1                                                    ;
++-------+-------+-------+-------+------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; red_power_led$latch                                ; state.INPUTTING     ; yes                    ;
+; Number of user-specified and inferred latches = 1  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                            ;
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+; Register name                                                                                                   ; Reason for Removal                                          ;
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+; BDC_7SEG:bcd_inst|BCD6[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD5[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD4[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD3[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD2[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD1[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; BDC_7SEG:bcd_inst|BCD0[7]                                                                                       ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[6..9,11,12,15,17,19,20,23,27,31]                                                        ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[5]                                                                                      ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[0..4]                                                                                   ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[59,60,63,68,71..73,75,79,81,82,87,88,91,95,97,103..105,107,108,111,116,119,121,124,127] ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[39,47,55,63]                                                                            ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[69]                                                                                     ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[71,75,79,87,95,100,103,108,111,113,115,116,119,121..124,127]                            ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[4,5]                                                                                ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[6,7]                                                                                ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[12,13]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[14,15]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[20,21]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[22,23]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[28,29]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[30,31]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[36,37]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[38,39]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[44,45]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[46,47]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[52,53]                                                                              ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|ID_string[54,55]                                                                              ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[7]                                                                                      ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[5]                                                                                      ; Stuck at VCC due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[104,110,118]                                                                            ; Merged with MAIN_LCD:lcd_inst|line1[35]                     ;
+; MAIN_LCD:lcd_inst|line1[28]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[34]                     ;
+; MAIN_LCD:lcd_inst|line1[57]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[33]                     ;
+; MAIN_LCD:lcd_inst|line2[125]                                                                                    ; Merged with MAIN_LCD:lcd_inst|line1[33]                     ;
+; MAIN_LCD:lcd_inst|line2[102]                                                                                    ; Merged with MAIN_LCD:lcd_inst|line1[32]                     ;
+; MAIN_LCD:lcd_inst|line1[48]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[32]                     ;
+; MAIN_LCD:lcd_inst|line1[38,59,72,90,96,102]                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[30]                     ;
+; MAIN_LCD:lcd_inst|line1[18,21,22,26,37,45,58,77,81,85,88,97,105,109,112,117]                                    ; Merged with MAIN_LCD:lcd_inst|line1[29]                     ;
+; MAIN_LCD:lcd_inst|line2[96]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[25]                     ;
+; MAIN_LCD:lcd_inst|line1[68,89,91]                                                                               ; Merged with MAIN_LCD:lcd_inst|line1[25]                     ;
+; MAIN_LCD:lcd_inst|line2[80,83,84,86,89,92,100]                                                                  ; Merged with MAIN_LCD:lcd_inst|line1[24]                     ;
+; MAIN_LCD:lcd_inst|line1[10,13,14]                                                                               ; Merged with MAIN_LCD:lcd_inst|line1[16]                     ;
+; MAIN_LCD:lcd_inst|line2[4,6,77,85,109,117]                                                                      ; Merged with MAIN_LCD:lcd_inst|line1[16]                     ;
+; MAIN_LCD:lcd_inst|line2[106,110,112..115,118,120,122,123]                                                       ; Merged with MAIN_LCD:lcd_inst|line2[126]                    ;
+; MAIN_LCD:lcd_inst|line1[44,66,83,99,106,107,114,120,125,126]                                                    ; Merged with MAIN_LCD:lcd_inst|line2[126]                    ;
+; MAIN_LCD:lcd_inst|line1[53,84,101]                                                                              ; Merged with MAIN_LCD:lcd_inst|line2[101]                    ;
+; MAIN_LCD:lcd_inst|line2[74,76,78,90]                                                                            ; Merged with MAIN_LCD:lcd_inst|line2[99]                     ;
+; MAIN_LCD:lcd_inst|line1[36,62,74,82,98]                                                                         ; Merged with MAIN_LCD:lcd_inst|line2[99]                     ;
+; MAIN_LCD:lcd_inst|line1[43]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[94]                     ;
+; MAIN_LCD:lcd_inst|line1[52]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[93]                     ;
+; MAIN_LCD:lcd_inst|line2[64]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[70]                     ;
+; MAIN_LCD:lcd_inst|line1[41]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[70]                     ;
+; MAIN_LCD:lcd_inst|line1[93]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[69]                     ;
+; MAIN_LCD:lcd_inst|line2[65,66]                                                                                  ; Merged with MAIN_LCD:lcd_inst|line2[67]                     ;
+; MAIN_LCD:lcd_inst|line1[51,65]                                                                                  ; Merged with MAIN_LCD:lcd_inst|line2[67]                     ;
+; MAIN_LCD:lcd_inst|line2[58]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[62]                     ;
+; MAIN_LCD:lcd_inst|line1[50]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[62]                     ;
+; MAIN_LCD:lcd_inst|line1[49,56]                                                                                  ; Merged with MAIN_LCD:lcd_inst|line2[61]                     ;
+; MAIN_LCD:lcd_inst|line1[54,78,86,94]                                                                            ; Merged with MAIN_LCD:lcd_inst|line1[46]                     ;
+; MAIN_LCD:lcd_inst|line1[70]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[61]                     ;
+; MAIN_LCD:lcd_inst|line1[67,92]                                                                                  ; Merged with MAIN_LCD:lcd_inst|line1[64]                     ;
+; MAIN_LCD:lcd_inst|line1[76,80]                                                                                  ; Merged with MAIN_LCD:lcd_inst|line1[73]                     ;
+; MAIN_LCD:lcd_inst|line1[24]                                                                                     ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[14,39,47,55]                                                                            ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line1[16]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[29]                     ;
+; MAIN_LCD:lcd_inst|line2[13,15,37,45]                                                                            ; Merged with MAIN_LCD:lcd_inst|line1[29]                     ;
+; MAIN_LCD:lcd_inst|line2[98]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[126]                    ;
+; MAIN_LCD:lcd_inst|line1[64]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[62]                     ;
+; MAIN_LCD:lcd_inst|line1[33]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[35]                     ;
+; MAIN_LCD:lcd_inst|line1[34]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[30]                     ;
+; MAIN_LCD:lcd_inst|line2[69]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[61]                     ;
+; MAIN_LCD:lcd_inst|line1[25]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[32]                     ;
+; MAIN_LCD:lcd_inst|line1[60]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[40]                     ;
+; MAIN_LCD:lcd_inst|line2[67]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[70]                     ;
+; MAIN_LCD:lcd_inst|line2[94]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[99]                     ;
+; MAIN_LCD:lcd_inst|line1[61]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line1[42]                     ;
+; state~8                                                                                                         ; Lost fanout                                                 ;
+; state~9                                                                                                         ; Lost fanout                                                 ;
+; state~10                                                                                                        ; Lost fanout                                                 ;
+; state~11                                                                                                        ; Lost fanout                                                 ;
+; state~12                                                                                                        ; Lost fanout                                                 ;
+; state~13                                                                                                        ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~8                                                                           ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~9                                                                           ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~10                                                                          ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~11                                                                          ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~12                                                                          ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST~13                                                                          ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|ST~8                                                              ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|ST~9                                                              ; Lost fanout                                                 ;
+; MAIN_LCD:lcd_inst|line1[46]                                                                                     ; Stuck at VCC due to stuck port data_in                      ;
+; flg_inp.10                                                                                                      ; Merged with flg_inp.01                                      ;
+; flg_inp.01                                                                                                      ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[56]                                                                                     ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[0]                                                                 ; Merged with counter[0]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[0]                                                                     ; Merged with counter[0]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[1]                                                                     ; Merged with MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[1] ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[1]                                                                 ; Merged with counter[1]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[2]                                                                     ; Merged with MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[2] ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[2]                                                                 ; Merged with counter[2]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[3]                                                                     ; Merged with MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[3] ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[3]                                                                 ; Merged with counter[3]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[4]                                                                     ; Merged with MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[4] ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[4]                                                                 ; Merged with counter[4]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[5]                                                                     ; Merged with MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[5] ;
+; MAIN_LCD:lcd_inst|LCD_CDivider:inst1|counter[5]                                                                 ; Merged with counter[5]                                      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|clk_div[6]                                                                     ; Merged with counter[6]                                      ;
+; flg_inp.00                                                                                                      ; Stuck at GND due to stuck port data_in                      ;
+; MAIN_LCD:lcd_inst|line2[36]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[52]                     ;
+; MAIN_LCD:lcd_inst|line2[46]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[38]                     ;
+; MAIN_LCD:lcd_inst|line2[54]                                                                                     ; Merged with MAIN_LCD:lcd_inst|line2[53]                     ;
+; Total Number of Removed Registers = 265                                                                         ;                                                             ;
++-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                           ;
++--------------------------------+---------------------------+----------------------------------------------------------+
+; Register name                  ; Reason for Removal        ; Registers Removed due to This Register                   ;
++--------------------------------+---------------------------+----------------------------------------------------------+
+; MAIN_LCD:lcd_inst|ID_string[5] ; Stuck at VCC              ; MAIN_LCD:lcd_inst|line2[55], MAIN_LCD:lcd_inst|line2[56] ;
+;                                ; due to stuck port data_in ;                                                          ;
++--------------------------------+---------------------------+----------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 389   ;
+; Number of registers using Synchronous Clear  ; 27    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 116   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 145   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------+
+; Inverted Register Statistics                            ;
++-----------------------------------------------+---------+
+; Inverted Register                             ; Fan out ;
++-----------------------------------------------+---------+
+; ps2_Main:keyb|digits_counter[0]               ; 8       ;
+; BDC_7SEG:bcd_inst|BCD0[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD0[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD0[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD0[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD0[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD0[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD1[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD2[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD3[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD4[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD5[5]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[0]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[1]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[2]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[3]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[4]                     ; 1       ;
+; BDC_7SEG:bcd_inst|BCD6[5]                     ; 1       ;
+; t[0]                                          ; 2       ;
+; ps2_Main:keyb|key[3]                          ; 2       ;
+; ps2_Main:keyb|key[1]                          ; 2       ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key1_code[7] ; 3       ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key1_code[4] ; 13      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key1_code[6] ; 17      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key1_code[5] ; 12      ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key2_code[4] ; 2       ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key2_code[5] ; 2       ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key2_code[6] ; 2       ;
+; ps2_Main:keyb|ps2_keyboard:inst1|key2_code[7] ; 2       ;
+; ps2_Main:keyb|ID[3]                           ; 10      ;
+; ps2_Main:keyb|ID[1]                           ; 9       ;
+; ps2_Main:keyb|ID[7]                           ; 10      ;
+; ps2_Main:keyb|ID[5]                           ; 9       ;
+; ps2_Main:keyb|ID[11]                          ; 10      ;
+; ps2_Main:keyb|ID[9]                           ; 9       ;
+; ps2_Main:keyb|ID[15]                          ; 10      ;
+; ps2_Main:keyb|ID[13]                          ; 9       ;
+; ps2_Main:keyb|ID[19]                          ; 10      ;
+; ps2_Main:keyb|ID[17]                          ; 9       ;
+; ps2_Main:keyb|ID[23]                          ; 10      ;
+; ps2_Main:keyb|ID[21]                          ; 9       ;
+; ps2_Main:keyb|ID[27]                          ; 10      ;
+; ps2_Main:keyb|ID[25]                          ; 9       ;
+; Total number of inverted registers = 68       ;         ;
++-----------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; 8:1                ; 2 bits    ; 10 LEs        ; 2 LEs                ; 8 LEs                  ; Yes        ; |Parking_Controller|ps2_Main:keyb|ID[22]                                 ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|mStart ;
+; 16:1               ; 22 bits   ; 220 LEs       ; 66 LEs               ; 154 LEs                ; Yes        ; |Parking_Controller|MAIN_LCD:lcd_inst|line2[44]                          ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Parking_Controller|ps2_Main:keyb|ps2_keyboard:inst1|key1_code[3]        ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |Parking_Controller|ps2_Main:keyb|ps2_keyboard:inst1|key2_code[2]        ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 2 LEs                ; 8 LEs                  ; Yes        ; |Parking_Controller|ps2_Main:keyb|ID[21]                                 ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD0[5]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD1[2]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD2[0]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD3[3]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD4[5]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD5[4]                            ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 42 LEs               ; 18 LEs                 ; Yes        ; |Parking_Controller|BDC_7SEG:bcd_inst|BCD6[0]                            ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Parking_Controller|ps2_Main:keyb|ps2_keyboard:inst1|key1_code[4]        ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |Parking_Controller|ps2_Main:keyb|ps2_keyboard:inst1|key2_code[7]        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |Parking_Controller|state                                                ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; No         ; |Parking_Controller|t                                                    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST                  ;
+; 256:1              ; 4 bits    ; 680 LEs       ; 56 LEs               ; 624 LEs                ; No         ; |Parking_Controller|ps2_Main:keyb|Selector0                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Parking_Controller ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; OFF            ; 0     ; Signed Integer                                            ;
+; INITIAL        ; 1     ; Signed Integer                                            ;
+; NORMAL_FSM     ; 2     ; Signed Integer                                            ;
+; ADMIN_FSM      ; 3     ; Signed Integer                                            ;
+; EXIT_FSM       ; 4     ; Signed Integer                                            ;
+; INPUTTING      ; 5     ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MAIN_LCD:lcd_inst|LCD:inst2 ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; LCD_INTIAL     ; 0     ; Signed Integer                                  ;
+; LCD_LINE1      ; 5     ; Signed Integer                                  ;
+; LCD_CH_LINE    ; 21    ; Signed Integer                                  ;
+; LCD_LINE2      ; 22    ; Signed Integer                                  ;
+; LUT_SIZE       ; 38    ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0 ;
++----------------+-------+-------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                              ;
++----------------+-------+-------------------------------------------------------------------+
+; CLK_Divide     ; 16    ; Signed Integer                                                    ;
++----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MAIN_LCD:lcd_inst|LCD_CDivider:inst1"                                                                                                                                                  ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                                                            ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; reset     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; reset[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ps2_Main:keyb|ps2_keyboard:inst1"                                                                                                                                                        ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                                                                                            ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; reset      ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; reset[-1]  ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; reset1     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; reset1[-1] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; scandata   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
+; key2_on    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ps2_Main:keyb|ps2_clock_divider:inst2"                                                                                                                                                 ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                                                            ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; reset     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; reset[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ps2_Main:keyb"                                                                              ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; key          ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ctrl_pressed ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; a_pressed    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 78                          ;
+; cycloneiii_ff         ; 389                         ;
+;     CLR               ; 15                          ;
+;     CLR SCLR          ; 8                           ;
+;     ENA               ; 52                          ;
+;     ENA CLR           ; 74                          ;
+;     ENA CLR SCLR      ; 19                          ;
+;     plain             ; 221                         ;
+; cycloneiii_io_obuf    ; 1                           ;
+; cycloneiii_lcell_comb ; 750                         ;
+;     arith             ; 157                         ;
+;         1 data inputs ; 6                           ;
+;         2 data inputs ; 147                         ;
+;         3 data inputs ; 4                           ;
+;     normal            ; 593                         ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 95                          ;
+;         2 data inputs ; 77                          ;
+;         3 data inputs ; 80                          ;
+;         4 data inputs ; 337                         ;
+;                       ;                             ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 3.17                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:03     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
+    Info: Processing started: Sun Nov 19 21:25:40 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Project -c Project
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file bcd_7seg.v
+    Info (12023): Found entity 1: BDC_7SEG
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_main.v
+    Info (12023): Found entity 1: ps2_Main
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_keyboard.v
+    Info (12023): Found entity 1: ps2_keyboard
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_clock_divider.v
+    Info (12023): Found entity 1: ps2_clock_divider
+Info (12021): Found 1 design units, including 1 entities, in source file parking_controller.v
+    Info (12023): Found entity 1: Parking_Controller
+Info (12021): Found 1 design units, including 1 entities, in source file main_lcd.v
+    Info (12023): Found entity 1: MAIN_LCD
+Info (12021): Found 1 design units, including 1 entities, in source file lcd_controller.v
+    Info (12023): Found entity 1: LCD_Controller
+Info (12021): Found 1 design units, including 1 entities, in source file lcd_cdivider.v
+    Info (12023): Found entity 1: LCD_CDivider
+Info (12021): Found 1 design units, including 1 entities, in source file lcd.v
+    Info (12023): Found entity 1: LCD
+Info (12127): Elaborating entity "Parking_Controller" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at Parking_Controller.v(87): truncated value with size 32 to match size of target (6)
+Warning (10240): Verilog HDL Always Construct warning at Parking_Controller.v(173): inferring latch(es) for variable "red_power_led", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "red_power_led" at Parking_Controller.v(173)
+Info (12128): Elaborating entity "ps2_Main" for hierarchy "ps2_Main:keyb"
+Warning (10036): Verilog HDL or VHDL warning at ps2_Main.v(13): object "MODE" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at ps2_Main.v(51): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_Main.v(52): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_Main.v(65): truncated value with size 32 to match size of target (3)
+Warning (10199): Verilog HDL Case Statement warning at ps2_Main.v(82): case item expression never matches the case expression
+Warning (10272): Verilog HDL Case Statement warning at ps2_Main.v(84): case item expression covers a value already covered by a previous case item
+Warning (10230): Verilog HDL assignment warning at ps2_Main.v(107): truncated value with size 24 to match size of target (4)
+Warning (10240): Verilog HDL Always Construct warning at ps2_Main.v(55): inferring latch(es) for variable "a_pressed", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "a_pressed" at ps2_Main.v(64)
+Info (12128): Elaborating entity "ps2_clock_divider" for hierarchy "ps2_Main:keyb|ps2_clock_divider:inst2"
+Info (12128): Elaborating entity "ps2_keyboard" for hierarchy "ps2_Main:keyb|ps2_keyboard:inst1"
+Warning (10036): Verilog HDL or VHDL warning at ps2_keyboard.v(59): object "HOST_ACK" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(25): truncated value with size 32 to match size of target (11)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(32): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(59): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(76): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(104): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(156): truncated value with size 32 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at ps2_keyboard.v(176): truncated value with size 32 to match size of target (8)
+Info (12128): Elaborating entity "MAIN_LCD" for hierarchy "MAIN_LCD:lcd_inst"
+Info (12128): Elaborating entity "LCD_CDivider" for hierarchy "MAIN_LCD:lcd_inst|LCD_CDivider:inst1"
+Info (12128): Elaborating entity "LCD" for hierarchy "MAIN_LCD:lcd_inst|LCD:inst2"
+Warning (10230): Verilog HDL assignment warning at LCD.v(61): truncated value with size 32 to match size of target (18)
+Warning (10230): Verilog HDL assignment warning at LCD.v(69): truncated value with size 32 to match size of target (6)
+Info (12128): Elaborating entity "LCD_Controller" for hierarchy "MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0"
+Warning (10230): Verilog HDL assignment warning at LCD_Controller.v(66): truncated value with size 32 to match size of target (5)
+Info (12128): Elaborating entity "BDC_7SEG" for hierarchy "BDC_7SEG:bcd_inst"
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "PS2_DAT" has no driver
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LCD_RW" is stuck at GND
+    Warning (13410): Pin "BCD0[7]" is stuck at GND
+    Warning (13410): Pin "BCD1[7]" is stuck at GND
+    Warning (13410): Pin "BCD2[7]" is stuck at GND
+    Warning (13410): Pin "BCD3[7]" is stuck at GND
+    Warning (13410): Pin "BCD4[7]" is stuck at GND
+    Warning (13410): Pin "BCD5[7]" is stuck at GND
+    Warning (13410): Pin "BCD6[7]" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register ps2_Main:keyb|digits_counter[0] will power up to High
+Info (17049): 14 registers lost all their fanouts during netlist optimizations.
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~0"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~2"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~4"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~6"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~8"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~10"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~12"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~14"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~16"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~18"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~20"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~22"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~24"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~26"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~28"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~30"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~32"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~34"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~36"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~38"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~40"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~42"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~44"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~46"
+    Info (17048): Logic cell "MAIN_LCD:lcd_inst|Add1~48"
+Info (144001): Generated suppressed messages file C:/Users/user/Desktop/Digital Project/Part1/output_files/Project.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "flr"
+Info (21057): Implemented 860 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 73 output pins
+    Info (21060): Implemented 1 bidirectional pins
+    Info (21061): Implemented 782 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 38 warnings
+    Info: Peak virtual memory: 4809 megabytes
+    Info: Processing ended: Sun Nov 19 21:25:55 2023
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:33
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/user/Desktop/Digital Project/Part1/output_files/Project.map.smsg.
+
+
