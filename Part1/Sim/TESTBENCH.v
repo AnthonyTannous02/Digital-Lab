@@ -60,7 +60,7 @@ module Parking_Controller_tb;
         key1_on = 0;
 
         #60
-        key1_code = 8'h76; key1_on = 1;
+        key1_code = 8'h26; key1_on = 1;
         #20
         key1_on = 0;
 

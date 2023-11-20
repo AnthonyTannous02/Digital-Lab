@@ -136,7 +136,7 @@ always @ (posedge clk) begin
             end
         end 
         NORMAL_FSM: begin
-            reset <= 1;
+            reset <= 0;
             if (!power) begin
                 state <= OFF;
             end else begin
@@ -200,6 +200,7 @@ case(state_N)
         end
     end
     INCORRECT_N: begin
+        reset <= 1;
         if (t < 5) state_N <= INCORRECT_N;
         else begin
             state_N <= CHECK_STATE_N;
@@ -208,6 +209,7 @@ case(state_N)
         end
     end
     GRANTED_CHOSN_FLR_N: begin
+        reset <= 1;
         if (t < 3) state_N <= GRANTED_CHOSN_FLR_N;
         else begin
             state_N <= CHECK_STATE_N;
@@ -216,6 +218,7 @@ case(state_N)
         end
     end
     GRANTED_ALT_FLR_N: begin
+        reset <= 1;
         if (t < 3) state_N <= GRANTED_ALT_FLR_N;
         else begin
             state_N <= CHECK_STATE_N;
@@ -224,6 +227,7 @@ case(state_N)
         end
     end
     NO_SPACE_N: begin
+        reset <= 1;
         if (t < 3) state_N <= NO_SPACE_N;
         else begin
             state_N <= CHECK_STATE_N;
