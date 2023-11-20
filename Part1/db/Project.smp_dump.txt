@@ -1,0 +1,29 @@
+
+State Machine - |Parking_Controller|flg_inp
+Name flg_inp.00 flg_inp.10 flg_inp.01 
+flg_inp.00 0 0 0 
+flg_inp.01 1 0 1 
+flg_inp.10 1 1 0 
+
+State Machine - |Parking_Controller|state
+Name state.INPUTTING state.EXIT_FSM state.ADMIN_FSM state.NORMAL_FSM state.INITIAL state.000000 
+state.000000 0 0 0 0 0 0 
+state.INITIAL 0 0 0 0 1 1 
+state.NORMAL_FSM 0 0 0 1 0 1 
+state.ADMIN_FSM 0 0 1 0 0 1 
+state.EXIT_FSM 0 1 0 0 0 1 
+state.INPUTTING 1 0 0 0 0 1 
+
+State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|mLCD_ST
+Name mLCD_ST.000011 mLCD_ST.000010 mLCD_ST.000001 mLCD_ST.000000 
+mLCD_ST.000000 0 0 0 0 
+mLCD_ST.000001 0 0 1 1 
+mLCD_ST.000010 0 1 0 1 
+mLCD_ST.000011 1 0 0 1 
+
+State Machine - |Parking_Controller|MAIN_LCD:lcd_inst|LCD:inst2|LCD_Controller:u0|ST
+Name ST.11 ST.10 ST.01 ST.00 
+ST.00 0 0 0 0 
+ST.01 0 0 1 1 
+ST.10 0 1 0 1 
+ST.11 1 0 0 1 
