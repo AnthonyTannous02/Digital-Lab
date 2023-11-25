@@ -11,18 +11,11 @@ output			LCD_RW,LCD_EN,LCD_RS;
 wire clk;
 
 reg [127:0] line1, line2;
-reg [55:0] ID_string;
+wire [55:0] ID_string;
 
+assign ID_string = {ID[27:24] + 8'h30, ID[23:20] + 8'h30, ID[19:16] + 8'h30, ID[15:12] + 8'h30, ID[11:8] + 8'h30, ID[7:4] + 8'h30, ID[3:0] + 8'h30};
 
 always @ (posedge iCLK) begin
-    ID_string[55:48] <= {4'h3, ID[27:24]};
-    ID_string[47:40] <= {4'h3, ID[23:20]};
-    ID_string[39:32] <= {4'h3, ID[19:16]};
-    ID_string[31:24] <= {4'h3, ID[15:12]};
-    ID_string[23:16] <= {4'h3, ID[11:8]};
-    ID_string[15:8]  <= {4'h3, ID[7:4]};
-    ID_string[7:0]   <= {4'h3, ID[3:0]};
-
     case(LCD_State)
         4'd0: begin
 				line1 <= "   Enter Your   "; 
@@ -30,7 +23,7 @@ always @ (posedge iCLK) begin
 			end
         4'd1: begin
 				line1 <= " ACCESS GRANTED ";
-				line2 <= "   ID: " + ID_string + "  ";
+				line2 <= {"   ID: ", ID_string, "  "};
 			end
 			
         4'd2: begin 
@@ -42,10 +35,46 @@ always @ (posedge iCLK) begin
 				line2 <= "   ID to Exit   ";
 			end
         4'd4: begin 
+				line1 <= "No Spaces       "; 
+				line2 <= "Left            ";
+			end
+        4'd5: begin 
 				line1 <= "Administrator   "; 
 				line2 <= "Mode            ";
 			end
-        4'd15: begin 
+		4'd5: begin 
+				line1 <= "   Enter Your   "; 
+				line2 <= "    Admin ID    ";
+			end
+        4'd6: begin 
+				line1 <= " Administrator  "; 
+				line2 <= "      Mode      ";
+			end
+        4'd7: begin 
+				line1 <= "  Admin ACCESS  "; 
+				line2 <= "     DENIED     ";
+			end
+		4'd8: begin 
+				line1 <= "1- Open the Gate"; 
+				line2 <= "2- Restrict Acc ";
+			end
+		4'd9: begin 
+				line1 <= "  Gate is Open  "; 
+				line2 <= "                ";
+			end
+		4'd10: begin 
+				line1 <= "   Enter ID to  "; 
+				line2 <= "     Restrict   ";
+			end
+		4'd11: begin 
+				line1 <= "ID: 2023XX      "; 
+				line2 <= "Is Restrict     ";
+			end
+		4'd12: begin 
+				line1 <= "   Invalid ID   "; 
+				line2 <= "   To Restrict  ";
+			end   
+		4'd15: begin 
 				line1 <= "    Parking     "; 
 				line2 <= "       OFF      ";
 			end

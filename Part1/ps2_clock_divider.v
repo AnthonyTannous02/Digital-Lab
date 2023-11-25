@@ -14,7 +14,7 @@ module ps2_clock_divider (
 		end else begin 
 			counter <= counter + 32'd1;
 			
-			if (counter == 32'd2)
+			if (counter == 32'd4999)
 			begin
 				clock_out <= ~clock_out;
 				counter <= 32'd0;

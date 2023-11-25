@@ -4,8 +4,7 @@ module Parking_Controller_tb;
     reg flr;
     reg power;
     reg clk;
-    reg [7:0] key1_code;
-    reg key1_on;
+    reg [27:0] ID;
 
     // Outputs
     wire [6:0] first_rem_BCD;
@@ -21,8 +20,7 @@ module Parking_Controller_tb;
         .flr(flr), 
         .power(power), 
         .clk(clk), 
-        .key1_code(key1_code), 
-        .key1_on(key1_on), 
+        .ID (ID),
         .first_rem_BCD(first_rem_BCD), 
         .second_rem_BCD(second_rem_BCD), 
         .tot_rem_BCD_left(tot_rem_BCD_left), 
@@ -37,63 +35,62 @@ module Parking_Controller_tb;
         flr = 0;
         power = 0;
         clk = 0;
-        key1_code = 0;
-        key1_on = 0;
+        ID = 28'hAAAAAAA;
 
         // Wait 100 ns for global reset to finish
         #100;
         power = 1;
 
         #10;
-        key1_code = 8'h16; key1_on = 1;
+        ID = 28'h1234567;
         #20
-        key1_on = 0;
 
         #10
-        key1_code = 8'h16; key1_on = 1;
+        ID = 28'h2023010;
         #20
-        key1_on = 0;
+        
 
         #10
-        key1_code = 8'h26; key1_on = 1;
+        ID = 28'h2023010;
         #20
-        key1_on = 0;
+        
 
-        #60
-        key1_code = 8'h1E; key1_on = 1;
+        #10
+        ID = 28'h2023011;
         #20
-        key1_on = 0;
+        
 
         
         #10
-        key1_code = 8'h45; key1_on = 1;
+        flr = 1;
+        ID = 28'h2023011;
         #20
-        key1_on = 0;
+        flr = 0;
 
-        #10
-        key1_code = 8'h1E; key1_on = 1;
-        #20
-        key1_on = 0;
+        // #10
+        // ID = 28'h
+        // #20
+        // key1_on = 0;
 
-        #10
-        key1_code = 8'h26; key1_on = 1;
-        #20
-        key1_on = 0;
+        // #10
+        // ID = 28'h
+        // #20
+        // key1_on = 0;
 
-        #10
-        key1_code = 8'h26; key1_on = 1;
-        #20
-        key1_on = 0;
+        // #10
+        // ID = 28'h
+        // #20
+        // key1_on = 0;
 
-        #10
-        key1_code = 8'h16; key1_on = 1;
-        #20
-        key1_on = 0;
+        // #10
+        // ID = 28'h
+        // #20
+        // key1_on = 0;
 
-        #10
-        key1_code = 8'h45; key1_on = 1;
-        #20
-        key1_on = 0;
+        // #10
+        // ID = 28'h
+        // #20
+        // key1_on = 0;
 
         #1000;
         $stop;
