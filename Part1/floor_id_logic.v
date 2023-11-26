@@ -2,8 +2,8 @@ module floor_id_logic(
     input [27:0] ID,
     input chosen_flr, CLK, // MODE==> 0: Enter, 1: Exit // action_taken==> 0: Nothing, 1: Go Alternative Floor, 2: Go Chosen Floor
     input [1:0] MODE, action_taken,
-    output wire id_valid, id_special, special_flr_chosen, chosen_flr_full, alternative_flr_full, adminId_valid,
-    output reg [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1
+    input [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1,
+    output wire id_valid, id_special, special_flr_chosen, chosen_flr_full, alternative_flr_full, adminId_valid
 );
 
 reg [95:0] users = {8'h10, 8'h11, 8'h12, 8'h13, 8'h14, 8'h15, 8'h16, 8'h17, 8'h18, 8'h19, 8'h20, 8'h21};
@@ -30,9 +30,9 @@ assign id_valid = (((
 && (!MODE) )
 ) ? 1 : 0;
 
-assign id_special = ((({1'b0, ID} == {special_users_status[1], ID_PREFIX, special_users[15:8]})  || ({1'b0, ID} == {special_users_status[0], ID_PREFIX, special_users[7:0]})
+assign id_special = (((({1'b0, ID} == {special_users_status[1], ID_PREFIX, special_users[15:8]})  || ({1'b0, ID} == {special_users_status[0], ID_PREFIX, special_users[7:0]}))
 && (!MODE)) ||
-(({1'b1, ID} == {special_users_status[1], ID_PREFIX, special_users[15:8]})  || ({1'b1, ID} == {special_users_status[0], ID_PREFIX, special_users[7:0]}) && (MODE == 1)))
+((({1'b1, ID} == {special_users_status[1], ID_PREFIX, special_users[15:8]})  || ({1'b1, ID} == {special_users_status[0], ID_PREFIX, special_users[7:0]})) && (MODE == 1)))
 ? 1 : 0;
 
 assign adminId_valid = ((ID == {ID_PREFIX, admin_users[15:8]}) || (ID == {ID_PREFIX, admin_users[7:0]})) ? 1 : 0;
@@ -45,13 +45,6 @@ assign alternative_flr_full = (((!chosen_flr) && (remain_flr_1 == 0)) || ((chose
 wire [7:0] id_postfix;
 
 assign id_postfix = ID[7:0];
-
-
-initial begin
-    remain_flr_spec_0 = 2;
-    remain_flr_norm_0 = 1; // 3
-    remain_flr_1 = 1; // 5
-end
 
 always @ (posedge CLK) begin
     if (MODE == 0) begin // Enter Mode
@@ -127,28 +120,28 @@ always @ (posedge CLK) begin
                 
             end
             endcase
-            if (action_taken == 1) begin //Alt
-                case(chosen_flr)
-                0: begin
-                    remain_flr_1 <= remain_flr_1 - 1;
-                end
-                1: begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 - 1;
-                end
-                endcase
-            end else if (action_taken == 2) begin //Chosn
-                case(chosen_flr)
-                0: begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 - 1;
-                end
-                1: begin
-                    remain_flr_1 <= remain_flr_1 - 1;
-                end
-                endcase
-            end
-            if (id_special) begin
-                remain_flr_spec_0 <= remain_flr_spec_0 - 1;
-            end
+            // if (action_taken == 1) begin //Alt
+            //     case(chosen_flr)
+            //     0: begin
+            //         remain_flr_1 <= remain_flr_1 - 1;
+            //     end
+            //     1: begin
+            //         remain_flr_norm_0 <= remain_flr_norm_0 - 1;
+            //     end
+            //     endcase
+            // end else if (action_taken == 2) begin //Chosn
+            //     case(chosen_flr)
+            //     0: begin
+            //         remain_flr_norm_0 <= remain_flr_norm_0 - 1;
+            //     end
+            //     1: begin
+            //         remain_flr_1 <= remain_flr_1 - 1;
+            //     end
+            //     endcase
+            // end
+            // if (id_special) begin
+            //     remain_flr_spec_0 <= remain_flr_spec_0 - 1;
+            // end
         end
     end else if (MODE == 1) begin // Exit Mode
         if (id_valid && (action_taken == 3)) begin
@@ -156,97 +149,97 @@ always @ (posedge CLK) begin
             8'h10: begin
                 users_status[11] <= 0;
                 if(users_flr[11]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end 
             8'h11: begin
                 users_status[10] <= 0;
                 if(users_flr[10]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h12: begin
                 users_status[9] <= 0;
                 if(users_flr[9]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h13: begin
                 users_status[8] <= 0;
                 if(users_flr[8]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h14: begin
                 users_status[7] <= 0;
                 if(users_flr[7]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h15: begin
                 users_status[6] <= 0;
                 if(users_flr[6]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h16: begin
                 users_status[5] <= 0;
                 if(users_flr[5]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h17: begin
                 users_status[4] <= 0;
                 if(users_flr[4]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h18: begin
                 users_status[3] <= 0;
                 if(users_flr[3]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h19: begin
                 users_status[2] <= 0;
                 if(users_flr[2]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h20: begin
                 users_status[1] <= 0;
                 if(users_flr[1]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             8'h21: begin
                 users_status[0] <= 0;
                 if(users_flr[0]) begin
-                    remain_flr_1 <= remain_flr_1 + 1;
+                    
                 end else begin
-                    remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                    
                 end
             end
             default: begin

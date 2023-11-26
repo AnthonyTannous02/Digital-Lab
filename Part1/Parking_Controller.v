@@ -28,7 +28,7 @@ wire [3:0] key;
 reg [1:0] flg_inp = 0;
 wire id_valid, id_special, alternative_flr_full;
 wire special_flr_chosen, chosen_flr_full, adminId_valid;
-wire [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1;
+reg [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1;
 
 
 
@@ -75,6 +75,9 @@ initial begin
     t = 0;
     LCD_State = 15;
     flg_inp = 0;
+    remain_flr_spec_0 = 2;
+    remain_flr_norm_0 = 3; // 3
+    remain_flr_1 = 5; // 5
 end
 
 ps2_Main keyb(
@@ -239,15 +242,16 @@ MODE <= 0;
 case(state_N)
     CHECK_STATE_N: begin
         take_action <= 0;
-        if (id_valid) begin
+        if (id_special && !special_flr_chosen) begin
+            state_N <= GRANTED_ALT_FLR_N;
+            t <= 0;
+            remain_flr_spec_0 <= remain_flr_spec_0 - 1;
+        end else if (id_special && special_flr_chosen) begin
+            state_N <= GRANTED_CHOSN_FLR_N;
+            t <= 0;
+            remain_flr_spec_0 <= remain_flr_spec_0 - 1;
+        end else if (id_valid) begin
             state_N <= CHECK_FLR_N;
-            if (id_special && !special_flr_chosen) begin
-                state_N <= GRANTED_ALT_FLR_N;
-                t <= 0;
-            end else if (id_special && special_flr_chosen) begin
-                state_N <= GRANTED_CHOSN_FLR_N;
-                t <= 0;
-            end
         end else begin
             state_N <= INCORRECT_N;
             t <= 0;
@@ -258,10 +262,26 @@ case(state_N)
         if (!chosen_flr_full) begin
             state_N <= GRANTED_CHOSN_FLR_N;
             t <= 0;
+            case(flr)
+            0: begin
+                remain_flr_norm_0 <= remain_flr_norm_0 - 1;
+            end
+            1: begin
+                remain_flr_1 <= remain_flr_1 - 1;
+            end
+            endcase
         end else begin
             if (!alternative_flr_full) begin
                 state_N <= GRANTED_ALT_FLR_N;
                 t <= 0;
+                case(flr)
+                0: begin
+                    remain_flr_1 <= remain_flr_1 - 1;
+                end
+                1: begin
+                    remain_flr_norm_0 <= remain_flr_norm_0 - 1;
+                end
+                endcase
             end else if(chosen_flr_full && alternative_flr_full) begin
                 state_N <= NO_SPACE_N;
                 t <= 0;
@@ -275,6 +295,7 @@ case(state_N)
             state_N <= CHECK_STATE_N;
             state <= INITIAL;
             t <= 0;
+            reset_keyboard <= 1;
         end
     end
     GRANTED_CHOSN_FLR_N: begin
@@ -284,6 +305,7 @@ case(state_N)
             state_N <= CHECK_STATE_N;
             state <= INITIAL;
             t <= 0;
+            reset_keyboard <= 1;
         end
     end
     GRANTED_ALT_FLR_N: begin
@@ -293,6 +315,7 @@ case(state_N)
             state_N <= CHECK_STATE_N;
             state <= INITIAL;
             t <= 0;
+            reset_keyboard <= 1;
         end
     end
     NO_SPACE_N: begin
@@ -302,6 +325,7 @@ case(state_N)
             state_N <= CHECK_STATE_N;
             state <= INITIAL;
             t <= 0;
+            reset_keyboard <= 1;
         end
     end
 endcase
