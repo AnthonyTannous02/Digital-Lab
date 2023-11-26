@@ -348,6 +348,10 @@ endcase
                         state <= INPUTTING;
                         state_admin <= CHECK_ADMIN;
                         t <= 0;
+                        if (ctrla_pressed) begin
+                        state <= INITIAL;
+                        t <= 0;
+                        end
                     end
                     CHECK_ADMIN: begin
                         if (adminId_valid) begin
@@ -359,6 +363,9 @@ endcase
                             state_admin <= INCORRECT_ADMIN;
                             t <= 0;
                         end else if (t >= 5) begin
+                            state <= INITIAL;
+                            t <= 0;
+                        end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
                         end
@@ -376,20 +383,26 @@ endcase
                             state_admin <= CHOOSE_MODE_ADMIN;
                             reset_keyboard <= 1;
                             t <= 0;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CORRECT_ADMIN;
-                        end    
+                        end   
                     end
                     INCORRECT_ADMIN: begin
                         if(t >= 5) begin
                             state <= INITIAL;
                             t <= 0;
                             reset_keyboard <= 1;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= INCORRECT_ADMIN;
-                        end
+                        end 
                     end
                     CHOOSE_MODE_ADMIN: begin
                         reset_keyboard <= 0;
@@ -403,25 +416,34 @@ endcase
                             t <= 0;
                         end else if (t >= 5) begin
                             state <= INITIAL;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHOOSE_MODE_ADMIN;
-                        end
+                        end 
                     end
                     OPEN_GATE_ADMIN: begin
                         if(t >= 3) begin
                             state <= INITIAL;
                             t <= 0;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= OPEN_GATE_ADMIN;
-                        end
-                        
+                        end 
                     end
                     RESTRICT_ADMIN: begin
                         flg_inp <= 3;
                         reset_keyboard <= 0;
                         state <= INPUTTING;
+                        if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
+                        end
                     end
                     CHECK_RESTRICT: begin
                         reset_keyboard <= 0;
@@ -434,22 +456,28 @@ endcase
                             state_admin <= CHECK_RESTRICT_CORRECT;
                             state <= ADMIN_FSM;
                             t <= 0;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             
                             state_admin <= CHECK_RESTRICT_INCORRECT;
                             state <= ADMIN_FSM;
                             t <= 0;
-                        end
+                        end 
                     end
                     CHECK_RESTRICT_CORRECT: begin
                         if (t >= 3) begin
                             state <= INITIAL;
                             t <= 0;
                             reset_keyboard <= 1;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHECK_RESTRICT_CORRECT;
-                        end
+                        end 
                         
                     end
                     CHECK_RESTRICT_INCORRECT: begin
@@ -457,10 +485,13 @@ endcase
                             state <= INITIAL;
                             t <= 0;
                             reset_keyboard <= 1;
+                        end else if (ctrla_pressed) begin
+                            state <= INITIAL;
+                            t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHECK_RESTRICT_INCORRECT;
-                        end
+                        end 
                         
                     end
                 endcase
