@@ -19,15 +19,15 @@ module Parking_Controller(
 reg MODE, reset_keyboard;
 reg [5:0] state, state_N; 
 wire [27:0] ID;
-reg [1:0] take_action = 0;
+reg [2:0] take_action = 0;
 
 reg [3:0] LCD_State;
 reg [5:0] t;
 wire key_pressed, key2_pressed, valid_key_pressed;
 wire [3:0] key;
 reg [1:0] flg_inp = 0;
-wire id_valid, id_special, alternative_flr_full;
-wire special_flr_chosen, chosen_flr_full, adminId_valid;
+wire id_valid, id_special, alternative_flr_full, id_exists;
+wire special_flr_chosen, chosen_flr_full, adminId_valid, id_restricted;
 reg [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1;
 
 
@@ -53,8 +53,6 @@ parameter NO_SPACE_N = 5;
 
 reg [3:0] state_admin;
 reg led_switch =1;
-
-
 reg [32:0] blinking_admin_counter = 1;
 
 // Parameters for the Admin Sub FSM 
@@ -129,6 +127,7 @@ floor_id_logic logic_inst(
     .action_taken (take_action),
     .MODE (MODE), // MODE==> {0: Enter, 1: Exit} 
     .id_valid (id_valid), 
+    .id_restricted (id_restricted), 
     .id_special (id_special), 
     .special_flr_chosen (special_flr_chosen), 
     .chosen_flr_full (chosen_flr_full), 
@@ -136,7 +135,8 @@ floor_id_logic logic_inst(
     .adminId_valid (adminId_valid),
     .remain_flr_spec_0 (remain_flr_spec_0), 
     .remain_flr_norm_0 (remain_flr_norm_0), 
-    .remain_flr_1 (remain_flr_1)
+    .remain_flr_1 (remain_flr_1),
+    .id_exists(id_exists)
 );
 
 BDC_7SEG bcd_inst(
@@ -329,10 +329,6 @@ case(state_N)
         end
     end
 endcase
-
-
-
-
             end
         end
         ADMIN_FSM: begin
@@ -343,29 +339,25 @@ endcase
                 t <= 0;
             end else if (ctrla_pressed) begin
                 state <= INITIAL;
-                reset_keyboard <= 1;
                 t <= 0;
             end else begin
+                reset_keyboard <= 0;
                 case (state_admin)
                     ENTER_ADMIN_ID: begin
-                        reset_keyboard <= 1;
                         flg_inp <= 1;
                         state <= INPUTTING;
                         state_admin <= CHECK_ADMIN;
                         t <= 0;
                     end
                     CHECK_ADMIN: begin
-                        reset_keyboard <= 0;
                         if (adminId_valid) begin
                             state <= ADMIN_FSM;
                             state_admin <= CORRECT_ADMIN;
                             t <= 0;
-                            reset_keyboard <= 1;
                         end else if(!adminId_valid)begin
                             state <= ADMIN_FSM;
                             state_admin <= INCORRECT_ADMIN;
                             t <= 0;
-                            reset_keyboard <= 1;
                         end else if (t >= 5) begin
                             state <= INITIAL;
                             t <= 0;
@@ -382,7 +374,7 @@ endcase
                         if(t >= 2) begin
                             state <= ADMIN_FSM;
                             state_admin <= CHOOSE_MODE_ADMIN;
-                            reset_keyboard <= 0;
+                            reset_keyboard <= 1;
                             t <= 0;
                         end else begin
                             state <= ADMIN_FSM;
@@ -393,17 +385,19 @@ endcase
                         if(t >= 5) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= INCORRECT_ADMIN;
                         end
                     end
                     CHOOSE_MODE_ADMIN: begin
+                        reset_keyboard <= 0;
                         if(valid_key_pressed == 1 && key == 1) begin
                             state_admin <= OPEN_GATE_ADMIN;
-                            reset_keyboard <= 1;
                             t <= 0;
                         end else if(valid_key_pressed == 1 && key == 2) begin
+                            reset_keyboard <= 0;
                             state_admin <= RESTRICT_ADMIN;
                             reset_keyboard <= 1;
                             t <= 0;
@@ -426,14 +420,32 @@ endcase
                     end
                     RESTRICT_ADMIN: begin
                         flg_inp <= 3;
+                        reset_keyboard <= 0;
                         state <= INPUTTING;
                     end
                     CHECK_RESTRICT: begin
-                    
+                        reset_keyboard <= 0;
+                        if (id_exists) begin
+                            if(id_restricted)begin
+                                take_action <= 5; // 5 is the Unrestrict mode
+                            end else begin
+                                take_action <= 4; // 4 is the Restrict mode
+                            end
+                            state_admin <= CHECK_RESTRICT_CORRECT;
+                            state <= ADMIN_FSM;
+                            t <= 0;
+                        end else begin
+                            
+                            state_admin <= CHECK_RESTRICT_INCORRECT;
+                            state <= ADMIN_FSM;
+                            t <= 0;
+                        end
                     end
                     CHECK_RESTRICT_CORRECT: begin
                         if (t >= 3) begin
                             state <= INITIAL;
+                            t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHECK_RESTRICT_CORRECT;
@@ -443,6 +455,8 @@ endcase
                     CHECK_RESTRICT_INCORRECT: begin
                         if(t >= 5) begin
                             state <= INITIAL;
+                            t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHECK_RESTRICT_INCORRECT;
@@ -529,15 +543,15 @@ always @ (state, state_N, state_admin, led_switch) begin
             LCD_State = 5;
             case (state_admin)
                     ENTER_ADMIN_ID: begin
-                    LCD_State = 4;
+                    LCD_State = 6;
                     end
                     CHECK_ADMIN: begin
-                    LCD_State = 5;
+                    LCD_State = 6;
                     end
                     CORRECT_ADMIN: begin
                         red_wrong_led  = led_switch;
                         green_led = led_switch;
-                        LCD_State = 6;    
+                        LCD_State = 5;    
                     end
                     INCORRECT_ADMIN: begin
                         red_wrong_led = 1;
@@ -558,14 +572,17 @@ always @ (state, state_N, state_admin, led_switch) begin
                         LCD_State = 10;
                     end
                     CHECK_RESTRICT: begin
-                    
-
+                        LCD_State = 10;
                     end
                     CHECK_RESTRICT_CORRECT: begin
-                        LCD_State = 11;
+                        if (take_action == 4) begin
+                            LCD_State = 11;
+                        end else if (take_action == 5) begin
+                            LCD_State = 12;
+                        end
                     end
                     CHECK_RESTRICT_INCORRECT: begin
-                        LCD_State = 12;
+                        LCD_State = 13;
                     end
                 endcase
         end

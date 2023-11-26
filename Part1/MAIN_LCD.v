@@ -25,7 +25,6 @@ always @ (posedge iCLK) begin
 				line1 <= " ACCESS GRANTED ";
 				line2 <= {"   ID: ", ID_string, "  "};
 			end
-			
         4'd2: begin 
 				line1 <= " ACCESS DENIED  ";
 				line2 <= "   Try Again    ";
@@ -35,20 +34,16 @@ always @ (posedge iCLK) begin
 				line2 <= "   ID to Exit   ";
 			end
         4'd4: begin 
-				line1 <= "No Spaces       "; 
-				line2 <= "Left            ";
+				line1 <= "   No Spaces    "; 
+				line2 <= "     Left       ";
 			end
         4'd5: begin 
-				line1 <= "Administrator   "; 
-				line2 <= "Mode            ";
-			end
-		4'd5: begin 
-				line1 <= "   Enter Your   "; 
-				line2 <= "    Admin ID    ";
-			end
-        4'd6: begin 
 				line1 <= " Administrator  "; 
 				line2 <= "      Mode      ";
+			end
+		4'd6: begin 
+				line1 <= "   Enter Your   "; 
+				line2 <= "    Admin ID    ";
 			end
         4'd7: begin 
 				line1 <= "  Admin ACCESS  "; 
@@ -67,10 +62,14 @@ always @ (posedge iCLK) begin
 				line2 <= "     Restrict   ";
 			end
 		4'd11: begin 
-				line1 <= "ID: 2023XX      "; 
-				line2 <= "Is Restrict     ";
+				line1 <= {"   ID: ", ID_string, "  "}; 
+				line2 <= "  Is RESTRICTED ";
 			end
 		4'd12: begin 
+				line1 <= {"   ID: ", ID_string, "  "}; 
+				line2 <= "Is UNRESTRICTED ";
+			end
+		4'd13: begin 
 				line1 <= "   Invalid ID   "; 
 				line2 <= "   To Restrict  ";
 			end   
