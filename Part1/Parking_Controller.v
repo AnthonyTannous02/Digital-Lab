@@ -26,7 +26,7 @@ reg [5:0] t;
 wire key_pressed, key2_pressed, valid_key_pressed;
 wire [3:0] key;
 reg [1:0] flg_inp = 0;
-wire id_valid, id_special, alternative_flr_full, id_exists;
+wire id_valid, id_special, alternative_flr_full, id_exists, user_in_floor;
 wire special_flr_chosen, chosen_flr_full, adminId_valid, id_restricted;
 reg [2:0] remain_flr_spec_0, remain_flr_norm_0, remain_flr_1;
 
@@ -67,6 +67,15 @@ parameter  CHECK_RESTRICT_CORRECT = 7;
 parameter  CHECK_RESTRICT_INCORRECT = 8;
 parameter ENTER_ADMIN_ID = 9;
 
+//***************************** The following are for the Exit FSM ************************************//
+
+reg [1:0] state_E;
+
+parameter ENTER_EXIT_ID = 0;
+parameter CHECK_STATE_E = 1;
+parameter CORRECT_E = 2;
+parameter INCORRECT_E = 3;
+
 initial begin
     state = 0;
     reset_keyboard = 1;
@@ -106,17 +115,17 @@ MAIN_LCD lcd_inst(
     .LCD_RS (LCD_RS)
 );
 
-// BDC_7SEGx bcd_inst(
-//     .code (ID),
-//     .CLK (clk),
-//     .BCD0 (BCD0), 
-//     .BCD1 (BCD1), 
-//     .BCD2 (BCD2), 
-//     .BCD3 (BCD3), 
-//     .BCD4 (BCD4), 
-//     .BCD5 (BCD5), 
-//     .BCD6 (BCD6)
-// );
+BDC_7SEGx bcd_inst(
+    .code (ID),
+    .CLK (clk),
+    .BCD0 (BCD0), 
+    .BCD1 (BCD1), 
+    .BCD2 (BCD2), 
+    .BCD3 (BCD3), 
+    .BCD4 (BCD4), 
+    .BCD5 (BCD5), 
+    .BCD6 (BCD6)
+);
 
 
 
@@ -136,19 +145,20 @@ floor_id_logic logic_inst(
     .remain_flr_spec_0 (remain_flr_spec_0), 
     .remain_flr_norm_0 (remain_flr_norm_0), 
     .remain_flr_1 (remain_flr_1),
-    .id_exists(id_exists)
+    .id_exists (id_exists),
+    .user_in_floor (user_in_floor)
 );
 
-BDC_7SEG bcd_inst(
-    .remain_flr_spec_0 (remain_flr_spec_0), 
-    .remain_flr_norm_0 (remain_flr_norm_0), 
-    .remain_flr_1 (remain_flr_1),
-    .CLK (clk),
-    .BCD0 (BCD0), 
-    .BCD1 (BCD1), 
-    .BCD2 (BCD2), 
-    .BCD3 (BCD3)
-);
+// BDC_7SEG bcd_inst(
+//     .remain_flr_spec_0 (remain_flr_spec_0), 
+//     .remain_flr_norm_0 (remain_flr_norm_0), 
+//     .remain_flr_1 (remain_flr_1),
+//     .CLK (clk),
+//     .BCD0 (BCD0), 
+//     .BCD1 (BCD1), 
+//     .BCD2 (BCD2), 
+//     .BCD3 (BCD3)
+// );
 
 reg [32:0] counter = 0;
 
@@ -216,6 +226,8 @@ always @ (posedge clk) begin
                         end
                         2: begin
                             state <= EXIT_FSM;
+                            state_E <= ENTER_EXIT_ID;
+                            t <= 0;
                         end
                         3: begin
                             state <= ADMIN_FSM;
@@ -474,7 +486,58 @@ endcase
             end else if (esc_pressed) begin
                 state <= INITIAL;
                 reset_keyboard <= 1;
-            end else state <= EXIT_FSM;
+            end else begin 
+                state <= EXIT_FSM;
+                MODE <= 1;
+                case(state_E)
+                    ENTER_ADMIN_ID: begin
+                        flg_inp <= 2;
+                        state <= INPUTTING;
+                        state_E <= CHECK_STATE_E;
+                        counter <= 0;
+                        t <= 0;
+                    end
+                    CHECK_STATE_E: begin
+                        if (id_valid) begin
+                            take_action <= 3;
+                            state_E <= CORRECT_E;
+                            counter <= 0;
+                            t <= 0;
+                            if (user_in_floor == 0) begin 
+                                remain_flr_norm_0 <= remain_flr_norm_0 + 1;
+                            end else begin
+                                remain_flr_1 <= remain_flr_1 + 1;
+                            end
+                        end else if (id_special) begin
+                            take_action <= 3;
+                            state_E <= CORRECT_E;
+                            counter <= 0;
+                            t <= 0;
+                            remain_flr_spec_0 <= remain_flr_spec_0 + 1;
+                        end else begin
+                            state_E <= INCORRECT_E;
+                            counter <= 0;
+                            t <= 0;
+                        end
+                    end
+                    CORRECT_E: begin
+                        if (t < 3) begin
+                            state_E <= CORRECT_E;
+                        end else begin
+                            state_E <= ENTER_EXIT_ID;
+                            state <= INITIAL;
+                        end
+                    end
+                    INCORRECT_E: begin
+                        if (t < 5) begin
+                            state_E <= INCORRECT_E;
+                        end else begin
+                            state_E <= ENTER_EXIT_ID;
+                            state <= INITIAL;
+                        end
+                    end
+                endcase
+            end
         end
         default: begin
             if (power) begin
