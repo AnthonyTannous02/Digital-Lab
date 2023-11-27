@@ -226,7 +226,7 @@ always @ (posedge clk) begin
                         end
                         2: begin
                             state <= EXIT_FSM;
-                            state_E <= ENTER_EXIT_ID;
+                            state_E <= CHECK_STATE_E;
                             t <= 0;
                         end
                         3: begin
@@ -521,7 +521,7 @@ endcase
                 state <= EXIT_FSM;
                 MODE <= 1;
                 case(state_E)
-                    ENTER_ADMIN_ID: begin
+                    ENTER_EXIT_ID: begin
                         flg_inp <= 2;
                         state <= INPUTTING;
                         state_E <= CHECK_STATE_E;
@@ -554,17 +554,21 @@ endcase
                     CORRECT_E: begin
                         if (t < 3) begin
                             state_E <= CORRECT_E;
+                            
                         end else begin
                             state_E <= ENTER_EXIT_ID;
                             state <= INITIAL;
+                            reset_keyboard <= 1;
                         end
                     end
                     INCORRECT_E: begin
                         if (t < 5) begin
                             state_E <= INCORRECT_E;
+                            
                         end else begin
                             state_E <= ENTER_EXIT_ID;
                             state <= INITIAL;
+                            reset_keyboard <= 1;
                         end
                     end
                 endcase
@@ -599,6 +603,8 @@ always @ (state, state_N, state_admin, led_switch) begin
             LCD_State = 4'd0;
             end else if(flg_inp == 1) begin
                 LCD_State = 4'd5;
+            end else if (flg_inp == 2) begin
+                LCD_State = 4'd3;
             end
         end
         NORMAL_FSM: begin
@@ -627,57 +633,87 @@ always @ (state, state_N, state_admin, led_switch) begin
             endcase
         end
         EXIT_FSM: begin
-            red_power_led = 0;
-            red_wrong_led = 1;
-            green_led = 1;
-            LCD_State = 4'd3;
+            red_power_led = 1;
+            red_wrong_led = 0;
+            green_led = 0;
+            LCD_State = 3;
+            case(state_E)
+                    ENTER_EXIT_ID: begin
+                        LCD_State = 3;
+                        red_wrong_led = 0;
+                        green_led = 0;
+                    end
+                    CHECK_STATE_E: begin
+                        LCD_State = 3;
+                        red_wrong_led = 0;
+                        green_led = 0;
+                    end
+                    CORRECT_E: begin
+                        LCD_State = 4'd14;
+                        green_led = 1;
+                        red_wrong_led = 0;
+                    end
+                    INCORRECT_E: begin
+                        LCD_State = 2;
+                        green_led = 0;
+                        red_wrong_led = 1;
+                    end
+            endcase
         end
         ADMIN_FSM: begin
             red_power_led = 1;
             LCD_State = 5;
             case (state_admin)
-                    ENTER_ADMIN_ID: begin
+                ENTER_ADMIN_ID: begin
                     LCD_State = 6;
-                    end
-                    CHECK_ADMIN: begin
+                end
+                CHECK_ADMIN: begin
                     LCD_State = 6;
-                    end
-                    CORRECT_ADMIN: begin
+                end
+                CORRECT_ADMIN: begin
                         red_wrong_led  = led_switch;
                         green_led = led_switch;
-                        LCD_State = 5;    
-                    end
-                    INCORRECT_ADMIN: begin
+                        LCD_State = 5;
+                end
+                INCORRECT_ADMIN: begin
                         red_wrong_led = 1;
                         green_led = 0;
                         LCD_State = 7;
-                    end
-                    CHOOSE_MODE_ADMIN: begin
+                end
+                CHOOSE_MODE_ADMIN: begin
                         red_wrong_led = 0;
                         green_led = 1;
                         LCD_State = 8;
-                    end
+                end
                     OPEN_GATE_ADMIN: begin
                         red_wrong_led = 0;
                         green_led = 1;
                         LCD_State = 9;
-                    end
-                    RESTRICT_ADMIN: begin
+                end
+                RESTRICT_ADMIN: begin
                         LCD_State = 10;
-                    end
-                    CHECK_RESTRICT: begin
+                        red_wrong_led = 0;
+                        green_led = 0;
+                end
+                CHECK_RESTRICT: begin
                         LCD_State = 10;
-                    end
-                    CHECK_RESTRICT_CORRECT: begin
+                        red_wrong_led = 0;
+                        green_led = 0;
+                end
+                CHECK_RESTRICT_CORRECT: begin
+                        red_wrong_led = 0;
+                        green_led = 1;
                         if (take_action == 4) begin
                             LCD_State = 11;
                         end else if (take_action == 5) begin
                             LCD_State = 12;
                         end
-                    end
-                    CHECK_RESTRICT_INCORRECT: begin
+                end
+                CHECK_RESTRICT_INCORRECT: begin
                         LCD_State = 13;
-                    end
+                        red_wrong_led = 1;
+                        green_led = 0;
+                end
                 endcase
         end
     endcase

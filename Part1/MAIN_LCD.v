@@ -72,7 +72,11 @@ always @ (posedge iCLK) begin
 		4'd13: begin 
 				line1 <= "   Invalid ID   "; 
 				line2 <= "   To Restrict  ";
-			end   
+			end
+		4'd14: begin
+				line1 <= {"   ID: ", ID_string, "  "};
+				line2 <= "    Exiting     ";
+		end
 		4'd15: begin 
 				line1 <= "    Parking     "; 
 				line2 <= "       OFF      ";
