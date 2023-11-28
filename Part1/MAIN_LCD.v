@@ -75,7 +75,7 @@ always @ (posedge iCLK) begin
 			end
 		4'd14: begin
 				line1 <= {"   ID: ", ID_string, "  "};
-				line2 <= "    Exiting     ";
+				line2 <= "     Exiting    ";
 		end
 		4'd15: begin 
 				line1 <= "    Parking     "; 
