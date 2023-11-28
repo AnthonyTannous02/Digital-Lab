@@ -352,6 +352,7 @@ endcase
             end else if (ctrla_pressed) begin
                 state <= INITIAL;
                 t <= 0;
+                reset_keyboard <= 1;
             end else begin
                 reset_keyboard <= 0;
                 case (state_admin)
@@ -363,6 +364,7 @@ endcase
                         if (ctrla_pressed) begin
                         state <= INITIAL;
                         t <= 0;
+                        reset_keyboard <= 1;
                         end
                     end
                     CHECK_ADMIN: begin
@@ -377,9 +379,11 @@ endcase
                         end else if (t >= 5) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end
                         
                     end
@@ -398,6 +402,7 @@ endcase
                         end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CORRECT_ADMIN;
@@ -411,6 +416,7 @@ endcase
                         end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= INCORRECT_ADMIN;
@@ -431,6 +437,7 @@ endcase
                         end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= CHOOSE_MODE_ADMIN;
@@ -440,9 +447,11 @@ endcase
                         if(t >= 3) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else if (ctrla_pressed) begin
                             state <= INITIAL;
                             t <= 0;
+                            reset_keyboard <= 1;
                         end else begin
                             state <= ADMIN_FSM;
                             state_admin <= OPEN_GATE_ADMIN;
