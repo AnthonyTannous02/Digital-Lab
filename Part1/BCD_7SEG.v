@@ -11,11 +11,11 @@ initial begin
     BCD3 = 7'b0111111;
 end
 
-wire [3:0] total_rem;
+wire [3:0] total_rem, rem_0;
 assign total_rem = remain_flr_norm_0 + remain_flr_spec_0 + remain_flr_1;
-
+assign rem_0 = remain_flr_spec_0 + remain_flr_norm_0;
 always @ (posedge CLK) begin
-        case(remain_flr_spec_0 + remain_flr_norm_0)
+        case(rem_0)
             4'b0000: BCD3 = 7'b1000000;
             4'b0001: BCD3 = 7'b1111001;
             4'b0010: BCD3 = 7'b0100100;

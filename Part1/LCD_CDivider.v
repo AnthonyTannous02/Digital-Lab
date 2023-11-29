@@ -14,7 +14,7 @@ module LCD_CDivider (
 		end else begin 
 			counter <= counter + 32'd1;
 			
-			if (counter == 32'd24999999)
+			if (counter == 32'd14999999)
 			begin
 				clock_out <= ~clock_out;
 				counter <= 32'd0;

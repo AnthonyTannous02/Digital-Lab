@@ -12,7 +12,7 @@ module Parking_Controller(
     output wire buffer_full, esc_pressed, ctrla_pressed,
     output wire LCD_RW, LCD_EN, LCD_RS,
     output wire [7:0] LCD_DATA,
-    output wire [7:0] BCD0, BCD1, BCD2, BCD3, BCD4, BCD5, BCD6
+    output wire [7:0] BCD0, BCD1, BCD2, BCD3//, BCD4, BCD5, BCD6
     
 );
 
@@ -115,17 +115,17 @@ MAIN_LCD lcd_inst(
     .LCD_RS (LCD_RS)
 );
 
-BDC_7SEGx bcd_inst(
-    .code (ID),
-    .CLK (clk),
-    .BCD0 (BCD0), 
-    .BCD1 (BCD1), 
-    .BCD2 (BCD2), 
-    .BCD3 (BCD3), 
-    .BCD4 (BCD4), 
-    .BCD5 (BCD5), 
-    .BCD6 (BCD6)
-);
+// BDC_7SEGx bcd_inst(
+//     .code (ID),
+//     .CLK (clk),
+//     .BCD0 (BCD0), 
+//     .BCD1 (BCD1), 
+//     .BCD2 (BCD2), 
+//     .BCD3 (BCD3), 
+//     .BCD4 (BCD4), 
+//     .BCD5 (BCD5), 
+//     .BCD6 (BCD6)
+// );
 
 
 
@@ -149,16 +149,16 @@ floor_id_logic logic_inst(
     .user_in_floor (user_in_floor)
 );
 
-// BDC_7SEG bcd_inst(
-//     .remain_flr_spec_0 (remain_flr_spec_0), 
-//     .remain_flr_norm_0 (remain_flr_norm_0), 
-//     .remain_flr_1 (remain_flr_1),
-//     .CLK (clk),
-//     .BCD0 (BCD0), 
-//     .BCD1 (BCD1), 
-//     .BCD2 (BCD2), 
-//     .BCD3 (BCD3)
-// );
+BDC_7SEG bcd_inst(
+    .remain_flr_spec_0 (remain_flr_spec_0), 
+    .remain_flr_norm_0 (remain_flr_norm_0), 
+    .remain_flr_1 (remain_flr_1),
+    .CLK (clk),
+    .BCD0 (BCD0), 
+    .BCD1 (BCD1), 
+    .BCD2 (BCD2), 
+    .BCD3 (BCD3)
+);
 
 reg [32:0] counter = 0;
 
@@ -184,6 +184,7 @@ always @ (posedge clk) begin
             reset_keyboard <= 0;
             state_N <= CHECK_STATE_N;
             state_admin <= ENTER_ADMIN_ID;
+            state_E <= ENTER_EXIT_ID;
             if (!power) begin
                 state <= OFF;
             end else if (valid_key_pressed) begin
@@ -202,7 +203,11 @@ always @ (posedge clk) begin
             reset_keyboard <= 0;
             if (!power) begin
                 state <= OFF;
-            end else begin
+            end else if ((flg_inp == 1 && ctrla_pressed) || (flg_inp == 3 &&ctrla_pressed)) begin
+                state <= INITIAL;
+                end else if (flg_inp == 2 && esc_pressed) begin
+                state <= INITIAL;
+                end else begin
                 if (!buffer_full) begin
                     if (t < 5 && !valid_key_pressed) begin
                         state <= INPUTTING;
@@ -214,7 +219,8 @@ always @ (posedge clk) begin
                         t <= 0;
                         reset_keyboard <= 1;
                     end
-                end else begin
+                end 
+                else begin
                     case(flg_inp)
                         0: begin
                             state <= NORMAL_FSM;
